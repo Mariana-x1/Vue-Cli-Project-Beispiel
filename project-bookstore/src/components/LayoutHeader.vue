@@ -23,6 +23,13 @@ export default {
   color: #fff;
 }
 
+@media only screen and (min-width: 1140px) {
+  .header {
+    font-size: 1.5rem;
+    margin-bottom: 50px;
+  }
+}
+
 .logo-container {
   display: grid;
   grid-template-columns: auto auto;
