@@ -32,11 +32,13 @@ export default {
 </script>
 
 <style scoped>
-.base-button {
+button {
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
-  color: #fff;
+  color: rgb(242, 236, 243);
+  background: #9011ea;
+  font-size: large;
   cursor: pointer;
 }
 
