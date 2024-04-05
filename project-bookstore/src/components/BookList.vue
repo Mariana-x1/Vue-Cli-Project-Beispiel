@@ -15,6 +15,8 @@
           :key="book.isbn"
           :title="book.title"
           :isbn="book.isbn"
+          :isBookmarked="book.isBookmarked"
+          @bookmark-clicked="toggleBookmark"
           class="table-item__table-row"
         />
       </tbody>
@@ -25,7 +27,6 @@
 <script>
 import BookListRow from "./BookListRow.vue";
 export default {
-  name: "BookList",
   components: { BookListRow },
   data() {
     return {
@@ -64,6 +65,13 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    toggleBookmark(isbn) {
+      const bookIndex = this.books.findIndex((book) => book.isbn === isbn);
+      const currentBook = this.books[bookIndex];
+      currentBook.isBookmarked = !currentBook.isBookmarked ? true : false;
+    },
   },
 };
 </script>

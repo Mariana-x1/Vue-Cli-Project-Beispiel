@@ -3,7 +3,11 @@
     <td>{{ title }}</td>
     <td>{{ isbn }}</td>
     <td>
-      <BaseButton text="Add" variant="secondary"></BaseButton>
+      <BaseButton
+        :text="buttonText"
+        variant="secondary"
+        @btn-clicked="toggleBookmark"
+      />
     </td>
   </tr>
 </template>
@@ -12,12 +16,23 @@
 import BaseButton from "@/components/BaseButton.vue";
 
 export default {
-  components: {
-    BaseButton,
-  },
   props: {
     title: String,
     isbn: String,
+    isBookmarked: Boolean,
+  },
+  components: {
+    BaseButton,
+  },
+  computed: {
+    buttonText() {
+      return this.isBookmarked ? "Remove Bookmark" : "Add Bookmark";
+    },
+  },
+  methods: {
+    toggleBookmark() {
+      this.$emit("bookmark-clicked", this.isbn);
+    },
   },
 };
 </script>

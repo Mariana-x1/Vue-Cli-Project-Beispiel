@@ -1,10 +1,10 @@
 <template>
-  <button :class="styling">{{ text }}</button>
-  <!-- <button :class="['base-button', variantClass]">{{ text }}</button> -->
+  <button :class="styling" @click="$emit('btn-clicked')">{{ text }}</button>
 </template>
 
 <script>
 export default {
+  emits: ["btn-clicked"],
   props: {
     text: {
       type: String,
@@ -16,37 +16,45 @@ export default {
       validator(value) {
         return ["primary", "secondary"].includes(value);
       },
-      //   validator: (value) => ["primary", "secondary"].includes(value),
     },
   },
-
   computed: {
     styling() {
       return ["btn", `btn--${this.variant}`];
     },
-    // variantClass() {
-    //   return this.variant === "secondary" ? "bg--secondary" : "bg--primary";
-    // },
   },
 };
 </script>
 
 <style scoped>
-button {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  color: rgb(242, 236, 243);
-  background: #9011ea;
-  font-size: large;
+.btn {
+  border: 3px solid transparent;
+  border-radius: 3px;
+  padding: 5px;
   cursor: pointer;
+  width: 100%;
+  display: block;
 }
 
-.bg--primary {
+.btn--primary {
+  border-color: var(--primary-dark);
   background-color: var(--primary);
+  color: #fff;
 }
 
-.bg--secondary {
-  background-color: var(--secondary);
+.btn--primary:hover {
+  border-color: var(--primary);
+  background-color: var(--primary-dark);
+}
+
+.btn--secondary {
+  border-color: var(--primary);
+  background-color: transparent;
+  color: var(--primary);
+}
+
+.btn--secondary:hover {
+  background-color: var(--primary);
+  color: #fff;
 }
 </style>
